@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymSyS | Dữ liệu đầu vào</title>
+<style>
+:root{--bg:#f4f6fa;--surface:#fff;--ink:#172033;--muted:#778197;--line:#e7eaf1;--nav:#151d31;--blue:#5269e8;--blue-soft:#edf0ff;--shadow:0 8px 28px rgba(27,39,70,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.app{min-height:100vh;display:grid;grid-template-columns:238px 1fr}.sidebar{background:var(--nav);color:#dbe2f1;padding:26px 16px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#7e8cff,#5367e8);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px}.brand strong{font-size:17px;color:white}.brand small{display:block;color:#9ba8c1;font-size:10px;letter-spacing:1.5px;margin-top:1px}.nav-label{font-size:10px;letter-spacing:1.4px;color:#7786a2;padding:0 12px;margin-bottom:8px}.nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:9px;color:#aeb9ce;margin:3px 0;font-size:13px;text-decoration:none}.nav-item.active{background:#293653;color:#fff}.nav-icon{width:18px;text-align:center;font-size:16px}.sidebar-bottom{margin-top:auto;border-top:1px solid #2b3650;padding:18px 10px 0;color:#8795af;font-size:11px}.main{min-width:0;padding:28px 34px 44px;max-width:1700px;width:100%;margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:18px}.eyebrow{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}h1{font-size:27px;letter-spacing:-.7px;margin:5px 0 4px}.sub{color:var(--muted);font-size:13px}.user{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;border-radius:50%;background:#e8eaff;color:#4f60c9;display:grid;place-items:center;font-weight:700}.user span{display:block;font-size:12px;font-weight:650}.user small{color:var(--muted);font-size:11px}.info{display:flex;gap:12px;align-items:flex-start;background:#eef1ff;border:1px solid #dfe4ff;color:#4655a4;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:12px}.info b{display:block;margin-bottom:3px;color:#34438f}.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:19px 21px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:16px;margin:0 0 4px}.panel-head p{font-size:12px;color:var(--muted);margin:0}.status{font-size:11px;color:#778197;white-space:nowrap;padding-top:3px}.toolbar{padding:13px 20px;display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);flex-wrap:wrap}.search{width:min(340px,100%);border:1px solid var(--line);background:#fbfcfe;border-radius:8px;padding:9px 12px;outline:none;font-size:12px}.search:focus{border-color:#9ba7f4;box-shadow:0 0 0 3px #edf0ff}.btn{border:1px solid var(--line);background:#fff;color:#4c566b;border-radius:8px;padding:9px 12px;font-size:12px;cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn:hover{filter:brightness(.98)}.count{margin-left:auto;color:var(--muted);font-size:11px}.table-wrap{overflow:auto;max-height:calc(100vh - 350px);min-height:250px}table{width:100%;border-collapse:separate;border-spacing:0;min-width:2450px}thead th{position:sticky;top:0;z-index:1;text-align:left;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:#8992a5;font-weight:700;padding:13px 12px;background:#fbfcfe;border-bottom:1px solid var(--line);white-space:nowrap}tbody td{padding:12px;border-bottom:1px solid #eef0f5;font-size:12px;color:#a0a8b8;white-space:nowrap;height:43px}tbody tr:hover{background:#fafbff}.empty{text-align:center;padding:42px 20px!important;color:var(--muted)!important;white-space:normal!important}.empty strong{display:block;color:#536078;font-size:13px;margin-bottom:5px}.footer{padding:13px 20px;border-top:1px solid var(--line);font-size:10px;color:#8992a5;background:#fcfcfe;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.guide{margin-top:17px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.guide-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 15px}.guide-card b{font-size:12px;display:block;margin-bottom:5px}.guide-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}.tag{display:inline-block;background:#f0f2ff;color:#5968ce;border-radius:5px;padding:3px 6px;font-size:10px;margin:2px 3px 2px 0}@media(max-width:1000px){.app{grid-template-columns:70px 1fr}.sidebar{padding:22px 10px}.brand{padding:0;justify-content:center}.brand>div:last-child,.nav-label,.nav-item span:last-child,.sidebar-bottom{display:none}.nav-item{justify-content:center;padding:12px 5px}.main{padding:24px 20px}}@media(max-width:620px){.main{padding:20px 12px}.topbar{align-items:flex-start}.user>div:last-child{display:none}h1{font-size:22px}.panel-head{padding:16px}.status{display:none}.guide{grid-template-columns:1fr}.toolbar{padding:12px}.count{margin-left:0}}
+.pager{display:flex;align-items:center;gap:9px}.pager span{font-size:11px;color:var(--muted);min-width:55px;text-align:center}#dataTable{min-width:900px}#dataTable th{position:sticky;top:0}#dataTable td{white-space:nowrap}.toolbar select{max-width:180px}@media(max-width:620px){.toolbar select{max-width:100%;flex:1}}
+</style></head>
+<body><div class="app">
+<aside class="sidebar"><div class="brand"><div class="brand-mark">G</div><div><strong>GymSyS</strong><small>INTELLIGENCE PLATFORM</small></div></div><div><div class="nav-label">WORKSPACE</div><a class="nav-item" href="gymsys_customer_retention.html"><span class="nav-icon">▦</span><span>Tổng quan giữ chân</span></a><a class="nav-item active" href="gymsys_customer_data.html"><span class="nav-icon">▤</span><span>Dữ liệu đầu vào</span></a><div class="nav-item"><span class="nav-icon">◷</span><span>Phân tích hội viên</span></div><div class="nav-item"><span class="nav-icon">◇</span><span>Báo cáo tài chính</span></div><div class="nav-item"><span class="nav-icon">⚙</span><span>Vận hành</span></div></div><div class="sidebar-bottom">GYMSYS DEMO VERSION<br>Customer Intelligence · v0.1</div></aside>
+<main class="main"><header class="topbar"><div><div class="eyebrow">DATA MANAGEMENT</div><h1>Dữ liệu đầu vào hội viên</h1><div class="sub">Dữ liệu giả lập đã hợp nhất từ Quận 1, Quận 7 và Biên Hòa.</div></div><div class="user"><div class="avatar">AD</div><div><span>Gym Administrator</span><small>Quản trị viên</small></div></div></header>
+<div class="info"><span>ⓘ</span><div><b>Dữ liệu đã được tích hợp</b>Website đang đọc dữ liệu đã chuẩn hóa từ 3 file Excel. Chọn chi nhánh và sheet để xem; bảng hỗ trợ tìm kiếm, phân trang và tải CSV. Các trường số điện thoại và ngày sinh được lược bỏ khỏi bản web demo.</div></div>
+<section class="panel"><div class="panel-head"><div><h2 id="sheetTitle">Bảng dữ liệu hội viên</h2><p id="sheetDescription">Dữ liệu hội viên đã hợp nhất từ ba chi nhánh.</p></div><div class="status" id="loadStatus">● Đang tải dữ liệu…</div></div><div class="toolbar"><input id="search" class="search" placeholder="Tìm trong dữ liệu đang xem..."><select id="branchSelect" class="btn"><option value="all">Tất cả chi nhánh</option></select><select id="sheetSelect" class="btn"><option value="hoi_vien">Hội viên</option><option value="goi_the">Gói thẻ</option><option value="goi_pt">Gói PT</option><option value="checkin">Check-in</option><option value="danh_gia">Đánh giá</option><option value="thiet_bi">Thiết bị</option></select><button class="btn primary" id="downloadCsv">Tải CSV đang xem</button><div class="count" id="recordCount">— bản ghi</div></div>
+<div class="table-wrap"><table id="dataTable"><thead id="tableHead"></thead><tbody id="tableBody"><tr><td class="empty"><strong>Đang tải dữ liệu</strong>Vui lòng chờ trong giây lát.</td></tr></tbody></table></div>
+<div class="footer"><span id="tableFooter">Dữ liệu giả lập · Snapshot 07/11/2026</span><div class="pager"><button class="btn" id="prevPage">Trước</button><span id="pageLabel">Trang 1</span><button class="btn" id="nextPage">Sau</button></div></div></section>
+<section class="guide"><div class="guide-card"><b>01 · Dữ liệu hội viên</b><p>900 hồ sơ hội viên tại ba chi nhánh, đã bỏ số điện thoại và ngày sinh khỏi bản web.</p></div><div class="guide-card"><b>02 · Hoạt động & trải nghiệm</b><p>87.863 lượt check-in, 1.938 đánh giá và khiếu nại được lưu trong các sheet riêng.</p></div><div class="guide-card"><b>03 · Gói tập & thiết bị</b><p>2.623 gói thẻ, 248 gói PT và 35 dòng thiết bị được tích hợp.</p></div></section>
+</main></div>
+<script>
+const PAGE_SIZE=50;
+const labels={
+ ma_hv:"Mã hội viên",ho_ten:"Họ tên",gioi_tinh:"Giới tính",ngay_tham_gia:"Ngày tham gia",chi_nhanh:"Chi nhánh",tap_cung_ban:"Tập cùng bạn",
+ loai_goi:"Loại gói",gia:"Giá (VND)",ngay_bat_dau:"Ngày bắt đầu",ngay_het_han:"Ngày hết hạn",
+ loai_pt:"Loại PT",so_buoi:"Số buổi",ngay_mua:"Ngày mua",
+ thoi_gian:"Thời gian check-in",hinh_thuc:"Hình thức",
+ ngay:"Ngày đánh giá",so_sao:"Số sao",khieu_nai:"Khiếu nại",da_xu_ly:"Đã xử lý",noi_dung:"Nội dung",
+ ten:"Tên thiết bị",so_luong:"Số lượng",nam_su_dung:"Năm sử dụng",p_hong_thang:"Xác suất hỏng/tháng",chi_phi_tb:"Chi phí TB (VND)",chi_phi_max:"Chi phí tối đa (VND)"
+};
+let core=null,checkinRows=null,allRows=[],filtered=[],page=1;
+const esc=s=>String(s??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+function valueText(v){
+ if(v===null||v===undefined||v==="")return "—";
+ if(typeof v==="number")return v.toLocaleString("vi-VN",{maximumFractionDigits:2});
+ return String(v);
+}
+async function loadSheet(){
+ const key=document.getElementById("sheetSelect").value;
+ if(key==="checkin"&&!checkinRows){
+   document.getElementById("loadStatus").textContent="● Đang tải check-in…";
+   const r=await fetch("gymsys_checkins.json");
+   if(!r.ok)throw new Error("Không tải được gymsys_checkins.json");
+   checkinRows=await r.json();
+ }
+ allRows=key==="checkin"?checkinRows:(core.tables[key]||[]);
+ const title=core.tableLabels[key]||key;
+ document.getElementById("sheetTitle").textContent="Bảng dữ liệu: "+title;
+ document.getElementById("sheetDescription").textContent=`Dữ liệu ${title.toLocaleLowerCase("vi")} đã hợp nhất từ ba chi nhánh.`;
+ document.getElementById("loadStatus").textContent="● Đã tải dữ liệu";
+ document.getElementById("tableFooter").textContent=`Snapshot ${new Date(core.snapshotDate+"T00:00:00").toLocaleDateString("vi-VN")} · ${title}`;
+ page=1;applyFilters();
+}
+function applyFilters(){
+ const q=document.getElementById("search").value.trim().toLocaleLowerCase("vi");
+ const branch=document.getElementById("branchSelect").value;
+ filtered=allRows.filter(row=>
+   (branch==="all"||row.chi_nhanh===branch) &&
+   (!q||Object.values(row).some(v=>String(v??"").toLocaleLowerCase("vi").includes(q)))
+ );
+ page=1;renderTable();
+}
+function renderTable(){
+ const totalPages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE));
+ page=Math.min(page,totalPages);
+ const start=(page-1)*PAGE_SIZE,rows=filtered.slice(start,start+PAGE_SIZE);
+ const cols=allRows.length?Object.keys(allRows[0]):[];
+ document.getElementById("tableHead").innerHTML="<tr>"+cols.map(k=>`<th>${esc(labels[k]||k)}</th>`).join("")+"</tr>";
+ document.getElementById("tableBody").innerHTML=rows.length?rows.map(row=>"<tr>"+cols.map(k=>`<td>${esc(valueText(row[k]))}</td>`).join("")+"</tr>").join(""):`<tr><td class="empty" colspan="${Math.max(cols.length,1)}"><strong>Không có dữ liệu phù hợp</strong>Thử thay đổi từ khóa hoặc chi nhánh.</td></tr>`;
+ document.getElementById("recordCount").textContent=`${filtered.length.toLocaleString("vi-VN")} bản ghi`;
+ document.getElementById("pageLabel").textContent=`Trang ${page}/${totalPages}`;
+ document.getElementById("prevPage").disabled=page<=1;
+ document.getElementById("nextPage").disabled=page>=totalPages;
+}
+function downloadCSV(){
+ const cols=allRows.length?Object.keys(allRows[0]):[];
+ const rows=filtered;
+ const quote=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+ const csv="\uFEFF"+[cols.map(k=>labels[k]||k).map(quote).join(","),...rows.map(r=>cols.map(k=>quote(r[k])).join(","))].join("\r\n");
+ const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`gymsys_${document.getElementById("sheetSelect").value}_${document.getElementById("branchSelect").value}.csv`;a.click();URL.revokeObjectURL(a.href);
+}
+async function init(){
+ try{
+  const r=await fetch("gymsys_data.json");if(!r.ok)throw new Error("Không tải được gymsys_data.json");
+  core=await r.json();
+  core.branches.forEach(b=>{const o=document.createElement("option");o.value=b;o.textContent=b;document.getElementById("branchSelect").appendChild(o)});
+  await loadSheet();
+ }catch(err){
+  document.getElementById("loadStatus").textContent="● Lỗi tải dữ liệu";
+  document.getElementById("tableBody").innerHTML=`<tr><td class="empty"><strong>Không thể tải dữ liệu</strong>${esc(err.message)}. Hãy đặt các file JSON cùng thư mục với HTML và mở bằng Live Server hoặc GitHub Pages.</td></tr>`;
+ }
+}
+document.getElementById("sheetSelect").addEventListener("change",()=>loadSheet().catch(e=>{document.getElementById("loadStatus").textContent="● Lỗi tải sheet";}));
+document.getElementById("branchSelect").addEventListener("change",applyFilters);
+document.getElementById("search").addEventListener("input",applyFilters);
+document.getElementById("downloadCsv").addEventListener("click",downloadCSV);
+document.getElementById("prevPage").addEventListener("click",()=>{if(page>1){page--;renderTable()}});
+document.getElementById("nextPage").addEventListener("click",()=>{if(page<Math.ceil(filtered.length/PAGE_SIZE)){page++;renderTable()}});
+init();
+</script></body></html>
