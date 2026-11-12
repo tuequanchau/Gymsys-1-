@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GymSyS | Customer Retention</title>
+<title>GymSyS | Customer Retention & CLV Optimization</title>
 <style>
 :root{
   --bg:#f4f6fa;--surface:#fff;--ink:#172033;--muted:#778197;--line:#e7eaf1;
@@ -11,56 +11,151 @@
   --red:#d94d59;--red-soft:#fff0f0;--amber:#c18422;--amber-soft:#fff7e8;
   --green:#218866;--green-soft:#eaf7f1;--shadow:0 8px 28px rgba(27,39,70,.06);
 }
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-button,input{font:inherit}.app{min-height:100vh;display:grid;grid-template-columns:238px 1fr}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+.app{min-height:100vh;display:grid;grid-template-columns:238px 1fr}
 .sidebar{background:var(--nav);color:#dbe2f1;padding:26px 16px;display:flex;flex-direction:column;gap:28px}
-.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#7e8cff,#5367e8);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px}
-.brand strong{font-size:17px;letter-spacing:.2px;color:white}.brand small{display:block;color:#9ba8c1;font-size:10px;letter-spacing:1.5px;margin-top:1px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 10px}
+.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#7e8cff,#5367e8);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px}
+.brand strong{font-size:17px;letter-spacing:.2px;color:#fff}
+.brand small{display:block;color:#9ba8c1;font-size:10px;letter-spacing:1.5px;margin-top:1px}
 .nav-label{font-size:10px;letter-spacing:1.4px;color:#7786a2;padding:0 12px;margin-bottom:8px}
-.nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:9px;color:#aeb9ce;margin:3px 0;font-size:13px}
-.nav-item.active{background:#293653;color:#fff}.nav-icon{width:18px;text-align:center;font-size:16px}.sidebar-bottom{margin-top:auto;border-top:1px solid #2b3650;padding:18px 10px 0;color:#8795af;font-size:11px}
-.main{min-width:0;padding:28px 34px 44px;max-width:1600px;width:100%;margin:0 auto}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}.eyebrow{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-h1{font-size:27px;letter-spacing:-.7px;margin:5px 0 4px}.sub{color:var(--muted);font-size:13px}
-.user{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;border-radius:50%;background:#e8eaff;color:#4f60c9;display:grid;place-items:center;font-weight:700}.user span{display:block;font-size:12px;font-weight:650}.user small{color:var(--muted);font-size:11px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:17px 18px;box-shadow:var(--shadow)}
-.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{width:29px;height:29px;border-radius:9px;background:#f0f2ff;color:var(--blue);display:grid;place-items:center}
-.stat-value{font-size:25px;font-weight:750;letter-spacing:-.6px;margin:10px 0 2px}.stat-note{font-size:11px;color:var(--muted)}.stat-note b{color:var(--green)}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:9px;color:#aeb9ce;margin:3px 0;font-size:13px;text-decoration:none}
+.nav-item.active{background:#293653;color:#fff}
+.nav-icon{width:18px;text-align:center;font-size:16px}
+.sidebar-bottom{margin-top:auto;border-top:1px solid #2b3650;padding:18px 10px 0;color:#8795af;font-size:11px}
+
+.main{min-width:0;padding:28px 34px 44px;max-width:1660px;width:100%;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:16px}
+.eyebrow{color:var(--blue);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:27px;letter-spacing:-.7px;margin:5px 0 4px}
+.sub{color:var(--muted);font-size:13px}
+.user{display:flex;align-items:center;gap:10px}
+.avatar{width:36px;height:36px;border-radius:50%;background:#e8eaff;color:#4f60c9;display:grid;place-items:center;font-weight:700}
+.user span{display:block;font-size:12px;font-weight:650}
+.user small{color:var(--muted);font-size:11px}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:17px 18px;box-shadow:var(--shadow)}
+.stat.highlight{border-color:#cfd7ff;background:linear-gradient(180deg,#ffffff 0%,#f7f9ff 100%)}
+.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+.stat-icon{width:29px;height:29px;border-radius:9px;background:#f0f2ff;color:var(--blue);display:grid;place-items:center;font-weight:700}
+.stat-value{font-size:24px;font-weight:750;letter-spacing:-.6px;margin:10px 0 2px;font-variant-numeric:tabular-nums}
+.stat-note{font-size:11px;color:var(--muted)}
+.stat-note b{color:var(--blue)}
+
+.formula-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.formula-head{padding:15px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fcfcfe;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.formula-head h3{margin:0;font-size:14px}
+.formula-head p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.formula-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:16px 20px;background:#fff}
+.f-box{background:#f8f9fd;border:1px solid #e6eaf5;border-radius:10px;padding:12px 14px}
+.f-box .f-tag{font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:.7px;color:var(--blue);margin-bottom:5px;display:block}
+.f-box .f-math{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;color:#1b2540;font-weight:650;line-height:1.55}
+.f-box small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+
+.btn{border:1px solid var(--line);background:#fff;color:#4c566b;border-radius:8px;padding:8px 12px;font-size:12px;cursor:pointer;font-weight:600}
+.btn:hover{background:#f7f8fc}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{filter:brightness(1.04)}
+
+.config-panel{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);background:#fbfcfe}
+.config-panel.open{display:block}
+.config-sections{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.cfg-group{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.cfg-group h4{margin:0 0 10px;font-size:12px;color:var(--ink)}
+.cfg-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.cfg-field label{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}
+.cfg-field input{width:100%;border:1px solid var(--line);border-radius:7px;padding:6px 9px;font-size:12px;background:#fcfdff}
+.cfg-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;align-items:center}
+
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .panel-head{padding:20px 21px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line)}
-.panel-head h2{font-size:16px;margin:0 0 4px}.panel-head p{font-size:12px;color:var(--muted);margin:0}
+.panel-head h2{font-size:16px;margin:0 0 4px}
+.panel-head p{font-size:12px;color:var(--muted);margin:0}
 .updated{font-size:11px;color:var(--muted);white-space:nowrap;padding-top:3px}
 .toolbar{padding:15px 20px;display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.search-wrap{position:relative;flex:1;min-width:220px;max-width:370px}.search-wrap span{position:absolute;left:12px;top:9px;color:#929bb0}.search{width:100%;border:1px solid var(--line);background:#fbfcfe;border-radius:8px;padding:9px 12px 9px 35px;outline:none;font-size:12px}.search:focus{border-color:#9ba7f4;box-shadow:0 0 0 3px #edf0ff}
+.search-wrap{position:relative;flex:1;min-width:220px;max-width:360px}
+.search-wrap span{position:absolute;left:12px;top:9px;color:#929bb0}
+.search{width:100%;border:1px solid var(--line);background:#fbfcfe;border-radius:8px;padding:9px 12px 9px 35px;outline:none;font-size:12px}
+.search:focus{border-color:#9ba7f4;box-shadow:0 0 0 3px #edf0ff}
 select{border:1px solid var(--line);background:#fff;color:#4c566b;border-radius:8px;padding:9px 30px 9px 11px;font-size:12px;outline:none}
 .result-count{margin-left:auto;color:var(--muted);font-size:11px}
+
 .legend{display:flex;gap:8px;align-items:center;padding:12px 20px;background:#fcfcfe;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.legend-label{font-size:11px;color:var(--muted);margin-right:4px}.legend-chip{font-size:10px;font-weight:650;border-radius:20px;padding:5px 9px;display:inline-flex;align-items:center;gap:6px}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
-.chip-high{background:var(--red-soft);color:var(--red)}.chip-mid{background:var(--amber-soft);color:var(--amber)}.chip-low{background:var(--green-soft);color:var(--green)}
-.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:850px}thead th{text-align:left;font-size:10px;letter-spacing:.65px;text-transform:uppercase;color:#8992a5;font-weight:700;padding:12px 14px;background:#fbfcfe;border-bottom:1px solid var(--line);white-space:nowrap}tbody tr{border-bottom:1px solid #eef0f5;transition:background .15s;cursor:pointer}tbody tr:last-child{border-bottom:0}tbody tr:hover{background:#f8f9fd}td{padding:13px 14px;font-size:12px;vertical-align:middle;white-space:nowrap}
-tbody tr.high{box-shadow:inset 3px 0 0 var(--red)}tbody tr.medium{box-shadow:inset 3px 0 0 var(--amber)}tbody tr.low{box-shadow:inset 3px 0 0 var(--green)}
-.customer{display:flex;align-items:center;gap:9px}.initial{width:30px;height:30px;border-radius:9px;background:#eef0ff;color:#5868cf;display:grid;place-items:center;font-size:10px;font-weight:750}.customer-name{font-weight:700;font-size:12px}.customer-id{font-size:10px;color:#929bad;margin-top:2px}
-.score{font-weight:800;font-variant-numeric:tabular-nums}.score.high{color:var(--red)}.score.medium{color:var(--amber)}.score.low{color:var(--green)}
-.pill{display:inline-flex;padding:5px 8px;border-radius:20px;font-size:10px;font-weight:700}.pill.high{background:var(--red-soft);color:var(--red)}.pill.medium{background:var(--amber-soft);color:var(--amber)}.pill.low{background:var(--green-soft);color:var(--green)}
-.reason{max-width:240px;overflow:hidden;text-overflow:ellipsis;color:#596378}.action{color:#5666d8;font-weight:650;font-size:11px}
+.legend-label{font-size:11px;color:var(--muted);margin-right:4px}
+.legend-chip{font-size:10px;font-weight:650;border-radius:20px;padding:5px 9px;display:inline-flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip-high{background:var(--red-soft);color:var(--red)}
+.chip-mid{background:var(--amber-soft);color:var(--amber)}
+.chip-low{background:var(--green-soft);color:var(--green)}
+.obj-badge{margin-left:auto;font-size:11px;color:#3d4d9c;background:var(--blue-soft);padding:5px 10px;border-radius:8px;font-weight:650}
+
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1020px}
+thead th{text-align:left;font-size:10px;letter-spacing:.65px;text-transform:uppercase;color:#8992a5;font-weight:700;padding:12px 14px;background:#fbfcfe;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr{border-bottom:1px solid #eef0f5;transition:background .15s;cursor:pointer}
+tbody tr:last-child{border-bottom:0}
+tbody tr:hover{background:#f8f9fd}
+td{padding:13px 14px;font-size:12px;vertical-align:middle;white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody tr.high{box-shadow:inset 3px 0 0 var(--red)}
+tbody tr.medium{box-shadow:inset 3px 0 0 var(--amber)}
+tbody tr.low{box-shadow:inset 3px 0 0 var(--green)}
+
+.customer{display:flex;align-items:center;gap:9px}
+.initial{width:30px;height:30px;border-radius:9px;background:#eef0ff;color:#5868cf;display:grid;place-items:center;font-size:10px;font-weight:750}
+.customer-name{font-weight:700;font-size:12px}
+.customer-id{font-size:10px;color:#929bad;margin-top:2px}
+.score{font-weight:800}
+.score.high{color:var(--red)}.score.medium{color:var(--amber)}.score.low{color:var(--green)}
+.pill{display:inline-flex;padding:5px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pill.high{background:var(--red-soft);color:var(--red)}
+.pill.medium{background:var(--amber-soft);color:var(--amber)}
+.pill.low{background:var(--green-soft);color:var(--green)}
+.reason{max-width:230px;overflow:hidden;text-overflow:ellipsis;color:#596378}
 .empty{padding:38px;text-align:center;color:var(--muted);font-size:13px}
 .footer-note{padding:13px 20px;border-top:1px solid var(--line);font-size:10px;color:#8992a5;background:#fcfcfe}
-.overlay{position:fixed;inset:0;background:rgba(17,25,43,.35);display:none;justify-content:flex-end;z-index:5}.overlay.open{display:flex}
-.drawer{width:min(440px,100%);height:100%;background:#fff;padding:25px;overflow:auto;box-shadow:-10px 0 35px rgba(20,30,55,.12);animation:slide .2s ease}
+
+.overlay{position:fixed;inset:0;background:rgba(17,25,43,.35);display:none;justify-content:flex-end;z-index:20}
+.overlay.open{display:flex}
+.drawer{width:min(480px,100%);height:100%;background:#fff;padding:25px;overflow:auto;box-shadow:-10px 0 35px rgba(20,30,55,.12);animation:slide .2s ease}
 @keyframes slide{from{transform:translateX(20px);opacity:.7}to{transform:translateX(0);opacity:1}}
-.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer-head h2{font-size:17px;margin:0}.close{border:0;background:#f1f3f8;width:31px;height:31px;border-radius:8px;cursor:pointer;font-size:18px;color:#667085}
-.profile{display:flex;align-items:center;gap:13px;margin:24px 0}.profile .initial{width:48px;height:48px;font-size:15px}.profile h3{margin:0 0 3px;font-size:16px}.profile p{margin:0;color:var(--muted);font-size:11px}
-.detail-score{background:#f8f9fd;border:1px solid var(--line);border-radius:12px;padding:15px;margin-bottom:20px}.detail-score-top{display:flex;justify-content:space-between;align-items:center}.detail-score strong{font-size:27px}.detail-score small{display:block;color:var(--muted);font-size:11px}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 20px}.detail-box{background:#fafbfe;border:1px solid var(--line);border-radius:10px;padding:12px}.detail-box small{color:var(--muted);font-size:10px}.detail-box b{display:block;font-size:16px;margin-top:4px}
-.section-title{font-size:12px;font-weight:750;margin:19px 0 8px}.reason-card,.action-card{padding:12px;border-radius:10px;font-size:12px;line-height:1.55}.reason-card{background:#fff8ed;border:1px solid #f5e8d0;color:#76531d}.action-card{background:#f0f3ff;border:1px solid #e2e7ff;color:#3e4e9a}.action-card ul{padding-left:17px;margin:7px 0 0}.action-card li{margin:4px 0}
+.drawer-head{display:flex;justify-content:space-between;align-items:center}
+.drawer-head h2{font-size:17px;margin:0}
+.close{border:0;background:#f1f3f8;width:31px;height:31px;border-radius:8px;cursor:pointer;font-size:18px;color:#667085}
+.profile{display:flex;align-items:center;gap:13px;margin:20px 0}
+.profile .initial{width:46px;height:46px;font-size:15px}
+.profile h3{margin:0 0 3px;font-size:16px}
+.profile p{margin:0;color:var(--muted);font-size:11px}
+.detail-score{background:#f8f9fd;border:1px solid var(--line);border-radius:12px;padding:15px;margin-bottom:16px}
+.detail-score-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.detail-score strong{font-size:24px}
+.detail-score small{display:block;color:var(--muted);font-size:11px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0 18px}
+.detail-box{background:#fafbfe;border:1px solid var(--line);border-radius:10px;padding:11px}
+.detail-box small{color:var(--muted);font-size:10px}
+.detail-box b{display:block;font-size:14px;margin-top:3px}
+.section-title{font-size:12px;font-weight:750;margin:16px 0 7px}
+.math-card,.reason-card,.action-card{padding:12px;border-radius:10px;font-size:12px;line-height:1.6}
+.math-card{background:#f4f6ff;border:1px solid #dfe5ff;color:#27346b;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11.5px}
+.reason-card{background:#fff8ed;border:1px solid #f5e8d0;color:#76531d}
+.action-card{background:#eefaf4;border:1px solid #d5f0e2;color:#1d664c}
+.action-card ul{padding-left:17px;margin:6px 0 0}
+.action-card li{margin:4px 0}
+
+@media(max-width:1100px){.formula-grid,.config-sections{grid-template-columns:1fr}}
 @media(max-width:1000px){.app{grid-template-columns:70px 1fr}.sidebar{padding:22px 10px}.brand{padding:0;justify-content:center}.brand>div:last-child,.nav-label,.nav-item span:last-child,.sidebar-bottom{display:none}.nav-item{justify-content:center;padding:12px 5px}.main{padding:24px 20px}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.main{padding:20px 12px}.topbar{align-items:flex-start}.user>div:last-child{display:none}h1{font-size:22px}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:21px}.panel-head{padding:16px}.updated{display:none}.toolbar{padding:12px}.search-wrap{max-width:none;flex-basis:100%}.result-count{margin-left:0}}
+@media(max-width:620px){.main{padding:20px 12px}.topbar{align-items:flex-start}.user>div:last-child{display:none}h1{font-size:22px}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:20px}.panel-head{padding:16px}.updated{display:none}.toolbar{padding:12px}.search-wrap{max-width:none;flex-basis:100%}.result-count,.obj-badge{margin-left:0}}
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
-    <div class="brand"><div class="brand-mark">G</div><div><strong>GymSyS</strong><small>INTELLIGENCE PLATFORM</small></div></div>
+    <div class="brand">
+      <div class="brand-mark">G</div>
+      <div><strong>GymSyS</strong><small>INTELLIGENCE PLATFORM</small></div>
+    </div>
     <div>
       <div class="nav-label">WORKSPACE</div>
       <div class="nav-item"><span class="nav-icon">▦</span><span>Tổng quan</span></div>
@@ -69,193 +164,576 @@ tbody tr.high{box-shadow:inset 3px 0 0 var(--red)}tbody tr.medium{box-shadow:ins
       <a class="nav-item" href="gymsys_customer_data.html"><span class="nav-icon">▤</span><span>Dữ liệu đầu vào</span></a>
       <div class="nav-item"><span class="nav-icon">⚙</span><span>Vận hành</span></div>
     </div>
-    <div class="sidebar-bottom">GYMSYS DEMO VERSION<br>Customer Intelligence · v0.1</div>
+    <div class="sidebar-bottom">GYMSYS MODEL v2.0<br>Logistic · CLV · Max Σ Lᵢ</div>
   </aside>
 
   <main class="main">
     <header class="topbar">
-      <div><div class="eyebrow">CUSTOMER INTELLIGENCE</div><h1>Ưu tiên giữ chân hội viên</h1><div class="sub">Theo dõi tín hiệu rủi ro không gia hạn trên dữ liệu mô phỏng của 3 chi nhánh.</div></div>
-      <div class="user"><div class="avatar">AD</div><div><span>Gym Administrator</span><small>Quản trị viên</small></div></div>
+      <div>
+        <div class="eyebrow">CUSTOMER INTELLIGENCE · OBJECTIVE OPTIMIZATION</div>
+        <h1>Ưu tiên giữ chân hội viên theo hàm mục tiêu Lᵢ</h1>
+        <div class="sub">Mô hình hóa xác suất rời bỏ Pᵢ, giá trị vòng đời CLVᵢ và tối đa hóa tổng giá trị bảo toàn max Σ Lᵢ.</div>
+      </div>
+      <div class="user">
+        <div class="avatar">AD</div>
+        <div><span>Gym Administrator</span><small>Quản trị viên</small></div>
+      </div>
     </header>
 
     <section class="stats">
-      <div class="stat"><div class="stat-top"><span>Tổng hội viên</span><span class="stat-icon">♙</span></div><div class="stat-value" id="totalCount">—</div><div class="stat-note">Hội viên trong 3 chi nhánh</div></div>
-      <div class="stat"><div class="stat-top"><span>Cần ưu tiên cao</span><span class="stat-icon" style="background:#fff0f0;color:#d94d59">!</span></div><div class="stat-value" id="highCount">—</div><div class="stat-note">Cần kiểm tra và chăm sóc</div></div>
-      <div class="stat"><div class="stat-top"><span>Xác suất churn trung bình</span><span class="stat-icon">↗</span></div><div class="stat-value" id="avgChurn">—</div><div class="stat-note">Trung bình xác suất dự báo</div></div>
-      <div class="stat"><div class="stat-top"><span>Tổng CLV dự báo</span><span class="stat-icon">◇</span></div><div class="stat-value" id="totalClv">—</div><div class="stat-note">Giá trị hiện tại của lợi nhuận đóng góp dự kiến</div></div>
+      <div class="stat">
+        <div class="stat-top"><span>Tổng hội viên (N)</span><span class="stat-icon">♙</span></div>
+        <div class="stat-value" id="totalCount">—</div>
+        <div class="stat-note">Ưu tiên cao: <b id="highCount">—</b> hội viên</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top"><span>Churn Rate TB (P̄)</span><span class="stat-icon">↗</span></div>
+        <div class="stat-value" id="avgChurn">—</div>
+        <div class="stat-note">Tỷ lệ giữ chân TB r̄ = <b id="avgRetention">—</b></div>
+      </div>
+      <div class="stat">
+        <div class="stat-top"><span>Tổng CLV hệ thống</span><span class="stat-icon">◇</span></div>
+        <div class="stat-value" id="totalClv">—</div>
+        <div class="stat-note">Σ CLVᵢ với T = <b id="horizonStat">12</b> tháng</div>
+      </div>
+      <div class="stat highlight">
+        <div class="stat-top"><span>Hàm mục tiêu Σ Lᵢ</span><span class="stat-icon" style="background:#fff0f0;color:#d94d59">Σ</span></div>
+        <div class="stat-value" id="totalObjective" style="color:var(--blue)">—</div>
+        <div class="stat-note">Top <b id="topKLabel">100</b> HV đạt <b id="topKObjective">—</b> (<span id="topKShare">—</span>)</div>
+      </div>
+    </section>
+
+    <section class="formula-card">
+      <div class="formula-head">
+        <div>
+          <h3>Kiến trúc mô hình toán học đang áp dụng</h3>
+          <p>Tính trực tiếp từ dữ liệu giả lập trong gymsys_data.json · Trọng số có thể hiệu chỉnh linh hoạt.</p>
+        </div>
+        <button class="btn" id="toggleConfigBtn">⚙ Hiệu chỉnh trọng số & tham số</button>
+      </div>
+      <div class="formula-grid">
+        <div class="f-box">
+          <span class="f-tag">A · Churn Rate (Logistic Regression)</span>
+          <div class="f-math">Zᵢ = β₀ + Σ βⱼxᵢⱼ<br>Pᵢ = 1 / (1 + e⁻ᶻⁱ)</div>
+          <small>Tỷ lệ giữ chân hàng tháng: rᵢ = 1 − Pᵢ</small>
+        </div>
+        <div class="f-box">
+          <span class="f-tag">B · Customer Lifetime Value (CLVᵢ)</span>
+          <div class="f-math">mᵢ = (Feeᵢ + PTᵢ) × Margin − VariableCostᵢ<br>CLVᵢ = Σₜ₌₁ᵀ [ mᵢ · rᵢᵗ / (1 + d)ᵗ ]</div>
+          <small>Giả định hàm sống còn Sᵢ(t) = rᵢᵗ</small>
+        </div>
+        <div class="f-box">
+          <span class="f-tag">C · Hàm mục tiêu tổng hợp</span>
+          <div class="f-math">Lᵢ = Pᵢ × CLVᵢ<br>Hàm mục tiêu: max Σᵢ₌₁ᴺ Lᵢ</div>
+          <small>Xếp hạng can thiệp theo tổn thất kỳ vọng Lᵢ (VNĐ)</small>
+        </div>
+      </div>
+
+      <div class="config-panel" id="configPanel">
+        <div class="config-sections">
+          <div class="cfg-group">
+            <h4>Trọng số Logistic Regression (β₀ và β₁ … β₇)</h4>
+            <div class="cfg-inputs">
+              <div class="cfg-field"><label>β₀ (Hệ số chặn Intercept)</label><input type="number" step="0.05" id="cfg_b0"></div>
+              <div class="cfg-field"><label>β₁ (Ngày chưa check-in / 30)</label><input type="number" step="0.05" id="cfg_b1"></div>
+              <div class="cfg-field"><label>β₂ (Mức giảm tần suất 14 ngày)</label><input type="number" step="0.05" id="cfg_b2"></div>
+              <div class="cfg-field"><label>β₃ (Mức độ cận / quá hạn gói)</label><input type="number" step="0.05" id="cfg_b3"></div>
+              <div class="cfg-field"><label>β₄ (Tần suất tập thấp)</label><input type="number" step="0.05" id="cfg_b4"></div>
+              <div class="cfg-field"><label>β₅ (Điểm đánh giá sao thấp)</label><input type="number" step="0.05" id="cfg_b5"></div>
+              <div class="cfg-field"><label>β₆ (Khiếu nại chưa xử lý)</label><input type="number" step="0.05" id="cfg_b6"></div>
+              <div class="cfg-field"><label>β₇ (Tập một mình / không bạn)</label><input type="number" step="0.05" id="cfg_b7"></div>
+            </div>
+          </div>
+          <div class="cfg-group">
+            <h4>Tham số CLV & Ngưỡng hàm mục tiêu Lᵢ</h4>
+            <div class="cfg-inputs">
+              <div class="cfg-field"><label>Margin (Biên lợi nhuận, 0–1)</label><input type="number" step="0.05" min="0.05" max="1" id="cfg_margin"></div>
+              <div class="cfg-field"><label>Chi phí biến đổi cố định/tháng (đ)</label><input type="number" step="5000" min="0" id="cfg_vcBase"></div>
+              <div class="cfg-field"><label>Chi phí biến đổi / lượt tập (đ)</label><input type="number" step="1000" min="0" id="cfg_vcCheckin"></div>
+              <div class="cfg-field"><label>Tỷ lệ chiết khấu tháng d (0–1)</label><input type="number" step="0.001" min="0" max="0.2" id="cfg_discount"></div>
+              <div class="cfg-field"><label>Chân trời dự báo T (tháng)</label><input type="number" step="1" min="1" max="60" id="cfg_horizon"></div>
+              <div class="cfg-field"><label>Số HV can thiệp mục tiêu (Top K)</label><input type="number" step="10" min="1" max="900" id="cfg_topK"></div>
+              <div class="cfg-field"><label>Ngưỡng Lᵢ Ưu tiên cao (VNĐ)</label><input type="number" step="100000" min="0" id="cfg_highThresh"></div>
+              <div class="cfg-field"><label>Ngưỡng Lᵢ Trung bình (VNĐ)</label><input type="number" step="50000" min="0" id="cfg_midThresh"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cfg-actions">
+          <button class="btn" id="resetConfigBtn">Khôi phục mặc định</button>
+          <button class="btn primary" id="applyConfigBtn">Áp dụng & Tính lại toàn hệ thống</button>
+        </div>
+      </div>
     </section>
 
     <section class="panel">
-      <div class="panel-head"><div><h2>Danh sách hội viên cần theo dõi</h2><p>Chấm điểm quy tắc từ hạn gói, check-in, đánh giá và khiếu nại.</p></div><div class="updated" id="snapshotLabel">● Đang tải dữ liệu…</div></div>
+      <div class="panel-head">
+        <div>
+          <h2>Danh sách hội viên xếp hạng theo Lᵢ = Pᵢ × CLVᵢ</h2>
+          <p>Nhấp vào từng dòng để xem chi tiết Zᵢ, Pᵢ, rᵢ, mᵢ, CLVᵢ và đóng góp vào hàm mục tiêu Σ Lᵢ.</p>
+        </div>
+        <div class="updated" id="snapshotLabel">● Đang tải dữ liệu…</div>
+      </div>
+
       <div class="toolbar">
         <div class="search-wrap"><span>⌕</span><input id="searchInput" class="search" placeholder="Tìm theo tên hoặc mã hội viên..." autocomplete="off"></div>
         <select id="branchFilter"><option value="all">Tất cả chi nhánh</option></select>
-        <select id="levelFilter"><option value="all">Tất cả mức độ</option><option value="high">Ưu tiên cao</option><option value="medium">Ưu tiên trung bình</option><option value="low">Ưu tiên thấp</option></select>
-        <select id="sortSelect"><option value="desc">Điểm ưu tiên: cao → thấp</option><option value="asc">Điểm ưu tiên: thấp → cao</option><option value="revenue">Doanh thu lịch sử: cao → thấp</option></select>
-        <div class="result-count" id="resultCount">12 hội viên</div>
+        <select id="levelFilter">
+          <option value="all">Tất cả mức ưu tiên</option>
+          <option value="high">Ưu tiên cao</option>
+          <option value="medium">Ưu tiên trung bình</option>
+          <option value="low">Ưu tiên thấp</option>
+        </select>
+        <select id="sortSelect">
+          <option value="li_desc">Hàm mục tiêu Lᵢ: cao → thấp</option>
+          <option value="li_asc">Hàm mục tiêu Lᵢ: thấp → cao</option>
+          <option value="clv_desc">CLVᵢ: cao → thấp</option>
+          <option value="churn_desc">Xác suất churn Pᵢ: cao → thấp</option>
+          <option value="m_desc">Lợi nhuận tháng mᵢ: cao → thấp</option>
+        </select>
+        <div class="result-count" id="resultCount">0 hội viên</div>
       </div>
+
       <div class="legend">
-        <span class="legend-label">PHÂN LOẠI:</span>
+        <span class="legend-label">PHÂN NHÓM Lᵢ:</span>
         <span class="legend-chip chip-high"><i class="dot"></i> Cao · Can thiệp trực tiếp</span>
         <span class="legend-chip chip-mid"><i class="dot"></i> Trung bình · Chăm sóc chủ động</span>
         <span class="legend-chip chip-low"><i class="dot"></i> Thấp · Duy trì tự động</span>
+        <span class="obj-badge" id="filteredObjSum">Tổng Σ Lᵢ đang lọc: —</span>
       </div>
-      <div style="padding:13px 20px;border-bottom:1px solid var(--line);background:#fff;display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:12px;color:#596378">
-        <span><b>Logistic Regression:</b> Pᵢ = 1 / (1 + e⁻ᶻⁱ)</span>
-        <span><b>CLV:</b> Σ mᵢSᵢ(t) / (1+d)ᵗ</span>
-        <span><b>Ưu tiên:</b> Cᵢ = 0,4Pᵢ + 0,6F₂,ᵢ</span>
-      </div>
+
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Hội viên</th><th>Chi nhánh</th><th>Xác suất churn</th><th>CLV</th><th>Điểm ưu tiên</th><th>Gói gần nhất</th><th>Còn lại</th><th>Mức ưu tiên</th><th>Tín hiệu chính</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Hội viên</th>
+              <th>Chi nhánh</th>
+              <th>Churn Pᵢ</th>
+              <th>Giữ chân rᵢ</th>
+              <th>LN tháng mᵢ</th>
+              <th>CLVᵢ</th>
+              <th>Mục tiêu Lᵢ = Pᵢ×CLVᵢ</th>
+              <th>Gói & Hạn còn</th>
+              <th>Mức ưu tiên</th>
+              <th>Tín hiệu chính</th>
+            </tr>
+          </thead>
           <tbody id="customerRows"></tbody>
         </table>
         <div class="empty" id="emptyState" style="display:none">Không tìm thấy hội viên phù hợp.</div>
       </div>
-      <div class="footer-note">Dữ liệu tổng hợp từ 3 chi nhánh · Snapshot 07/11/2026</div>
+      <div class="footer-note">Dữ liệu tổng hợp từ 3 chi nhánh · Snapshot 07/11/2026 · Tối ưu hóa theo Lᵢ = Pᵢ × CLVᵢ</div>
     </section>
   </main>
 </div>
 
 <div class="overlay" id="overlay">
   <aside class="drawer">
-    <div class="drawer-head"><h2>Hồ sơ hội viên</h2><button class="close" id="closeDrawer" aria-label="Đóng">×</button></div>
+    <div class="drawer-head">
+      <h2>Chi tiết tính toán hội viên</h2>
+      <button class="close" id="closeDrawer" aria-label="Đóng">×</button>
+    </div>
     <div id="drawerContent"></div>
   </aside>
 </div>
 
 <script>
+let rawData = null;
 let customers = [];
 let snapshotDate = "";
-let modelConfig = { margin: 0.60, discount: 0.005, horizon: 12, wChurn: 0.40, wCLV: 0.60 };
-const levelNames={high:"Ưu tiên cao",medium:"Ưu tiên trung bình",low:"Ưu tiên thấp"};
-const money=n=>new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND",maximumFractionDigits:0}).format(n||0);
-const pct=n=>(100*(n||0)).toFixed(1)+"%";
-const scoreText=n=>(100*(n||0)).toFixed(1)+"/100";
-const initials=name=>(name||"").split(" ").slice(-2).map(s=>s[0]).join("").toUpperCase();
-const esc=s=>String(s??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-const dateVN=s=>s?new Date(s+"T00:00:00").toLocaleDateString("vi-VN"):"—";
-const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
-const daysBetween=(a,b)=>Math.max(1,(new Date(b+"T00:00:00")-new Date(a+"T00:00:00"))/86400000);
 
-// Logistic Regression: Z = beta0 + sum(beta_j * x_j)
-// Feature scaling keeps all input variables on comparable ranges.
-const beta={intercept:-2.00, inactivity:0.65, attendanceDrop:0.75, expiryUrgency:0.90, lowAttendance:0.65, dissatisfaction:0.45, unresolvedComplaints:0.55};
-function logisticProbability(c){
- const inactivity=clamp((Number(c.daysSinceCheckin)||0)/30,0,2);
- const attendanceDrop=clamp(((Number(c.previousCheckins)||0)-(Number(c.recentCheckins)||0))/Math.max(1,Number(c.previousCheckins)||0),-1,1);
- const expiryUrgency=clamp((30-(Number.isFinite(c.daysRemaining)?c.daysRemaining:30))/30,-1,2);
- const lowAttendance=1-clamp((Number(c.recentCheckins)||0)/8,0,1);
- const dissatisfaction=c.avgRating==null?0.2:clamp((5-Number(c.avgRating))/4,0,1);
- const unresolvedComplaints=clamp(Number(c.unresolvedComplaints30d)||0,0,3);
- const z=beta.intercept+beta.inactivity*inactivity+beta.attendanceDrop*attendanceDrop+beta.expiryUrgency*expiryUrgency+beta.lowAttendance*lowAttendance+beta.dissatisfaction*dissatisfaction+beta.unresolvedComplaints*unresolvedComplaints;
- return 1/(1+Math.exp(-z));
+const DEFAULT_CONFIG = {
+  b0: -2.10,
+  b1: 0.65, // inactivity
+  b2: 0.75, // attendanceDrop
+  b3: 0.90, // expiryUrgency
+  b4: 0.60, // lowAttendance
+  b5: 0.45, // dissatisfaction
+  b6: 0.55, // unresolvedComplaints
+  b7: 0.25, // soloWorkout
+  margin: 0.65,
+  vcBase: 35000,
+  vcCheckin: 15000,
+  discount: 0.008,
+  horizon: 12,
+  topK: 100,
+  highThresh: 1200000,
+  midThresh: 500000
+};
+
+let cfg = { ...DEFAULT_CONFIG };
+
+const levelNames = { high: "Ưu tiên cao", medium: "Ưu tiên trung bình", low: "Ưu tiên thấp" };
+const money = n => new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", maximumFractionDigits: 0 }).format(n || 0);
+const compactMoney = n => {
+  const v = Number(n) || 0;
+  if (Math.abs(v) >= 1e9) return (v / 1e9).toFixed(2) + " tỷ";
+  if (Math.abs(v) >= 1e6) return (v / 1e6).toFixed(1) + " tr";
+  return money(v);
+};
+const pct = n => (100 * (n || 0)).toFixed(1) + "%";
+const initials = name => (name || "").split(" ").slice(-2).map(s => s[0]).join("").toUpperCase();
+const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const dateVN = s => s ? new Date(s + "T00:00:00").toLocaleDateString("vi-VN") : "—";
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const daysBetween = (a, b) => Math.max(1, (new Date(b + "T00:00:00") - new Date(a + "T00:00:00")) / 86400000);
+
+// A. Logistic Regression: Z_i = beta_0 + sum(beta_j * x_ij), P_i = 1 / (1 + e^-Z_i)
+function computeChurn(c, memberInfo) {
+  const x1 = clamp((Number(c.daysSinceCheckin) || 0) / 30, 0, 2);
+  const x2 = clamp(((Number(c.previousCheckins) || 0) - (Number(c.recentCheckins) || 0)) / Math.max(1, Number(c.previousCheckins) || 0), -1, 1);
+  const x3 = clamp((30 - (Number.isFinite(c.daysRemaining) ? c.daysRemaining : 30)) / 30, -1, 2);
+  const x4 = 1 - clamp((Number(c.recentCheckins) || 0) / 8, 0, 1);
+  const x5 = c.avgRating == null ? 0.20 : clamp((5 - Number(c.avgRating)) / 4, 0, 1);
+  const x6 = clamp(Number(c.unresolvedComplaints30d) || 0, 0, 3);
+  const hasBuddy = memberInfo && Number(memberInfo.tap_cung_ban) === 1;
+  const x7 = hasBuddy ? 0 : 1;
+
+  const z = cfg.b0
+    + cfg.b1 * x1
+    + cfg.b2 * x2
+    + cfg.b3 * x3
+    + cfg.b4 * x4
+    + cfg.b5 * x5
+    + cfg.b6 * x6
+    + cfg.b7 * x7;
+
+  const p = 1 / (1 + Math.exp(-z));
+  const r = 1 - p;
+
+  c.features = { x1, x2, x3, x4, x5, x6, x7 };
+  c.zScore = z;
+  c.churnProbability = p;
+  c.retentionRate = r;
 }
-function buildMonthlyContribution(data){
- const totals={};
- (data.tables?.goi_the||[]).forEach(p=>{
-   const duration=daysBetween(p.ngay_bat_dau,p.ngay_het_han)/30.4375;
-   if(!p.ma_hv||!Number(p.gia)||!Number.isFinite(duration))return;
-   if(!totals[p.ma_hv])totals[p.ma_hv]={revenue:0,months:0};
-   totals[p.ma_hv].revenue+=Number(p.gia);totals[p.ma_hv].months+=duration;
- });
- return totals;
+
+// Chuẩn bị dữ liệu Fee_i (gói thẻ/tháng) và PT_i (gói PT/tháng) từ bảng đầu vào
+function buildRevenueMaps(data) {
+  const feeMap = {};
+  (data.tables?.goi_the || []).forEach(p => {
+    if (!p.ma_hv || !Number(p.gia)) return;
+    const months = daysBetween(p.ngay_bat_dau, p.ngay_het_han) / 30.4375;
+    if (!Number.isFinite(months) || months <= 0) return;
+    if (!feeMap[p.ma_hv]) feeMap[p.ma_hv] = { rev: 0, months: 0 };
+    feeMap[p.ma_hv].rev += Number(p.gia);
+    feeMap[p.ma_hv].months += months;
+  });
+
+  const memberMap = {};
+  (data.tables?.hoi_vien || []).forEach(h => {
+    memberMap[h.ma_hv] = h;
+  });
+
+  const ptMap = {};
+  (data.tables?.goi_pt || []).forEach(p => {
+    if (!p.ma_hv || !Number(p.gia)) return;
+    if (!ptMap[p.ma_hv]) ptMap[p.ma_hv] = { rev: 0, sessions: 0 };
+    ptMap[p.ma_hv].rev += Number(p.gia);
+    ptMap[p.ma_hv].sessions += Number(p.so_buoi) || 0;
+  });
+
+  return { feeMap, ptMap, memberMap };
 }
-function calculateCLV(c,monthly){
- const hist=monthly[c.id];
- const monthlyRevenue=hist&&hist.months>0?hist.revenue/hist.months:0;
- const m=monthlyRevenue*modelConfig.margin;
- let clv=0, survival=1;
- for(let t=1;t<=modelConfig.horizon;t++){
-   survival*=1-c.churnProbability;
-   clv+=(m*survival)/Math.pow(1+modelConfig.discount,t);
- }
- c.monthlyContribution=m;c.monthlyRevenue=monthlyRevenue;c.clv=clv;
+
+// B. CLV & C. Hàm mục tiêu L_i = P_i * CLV_i
+function calculateAllModels(data) {
+  const { feeMap, ptMap, memberMap } = buildRevenueMaps(data);
+
+  customers.forEach(c => {
+    const mInfo = memberMap[c.id];
+    computeChurn(c, mInfo);
+
+    // Fee_i: doanh thu gói thẻ quy đổi hàng tháng
+    const fRec = feeMap[c.id];
+    const feeMonthly = fRec && fRec.months > 0 ? fRec.rev / fRec.months : 0;
+
+    // PT_i: doanh thu gói PT quy đổi hàng tháng (chia theo thời gian gắn bó tối thiểu 6 tháng)
+    const pRec = ptMap[c.id];
+    const tenureMonths = mInfo && mInfo.ngay_tham_gia && snapshotDate
+      ? Math.max(6, daysBetween(mInfo.ngay_tham_gia, snapshotDate) / 30.4375)
+      : 12;
+    const ptMonthly = pRec && pRec.rev > 0 ? pRec.rev / tenureMonths : 0;
+
+    // VariableCost_i: chi phí biến đổi hàng tháng theo mức độ sử dụng thực tế
+    const monthlyCheckins = (Number(c.checkinsPerWeek) || 0) * 4.33;
+    const variableCost = cfg.vcBase + cfg.vcCheckin * monthlyCheckins;
+
+    // m_i = (Fee_i + PT_i) * Margin - VariableCost_i
+    const m = (feeMonthly + ptMonthly) * cfg.margin - variableCost;
+
+    // CLV_i = sum_{t=1}^T [ m_i * S_i(t) / (1 + d)^t ], S_i(t) = r_i^t
+    let clv = 0;
+    for (let t = 1; t <= cfg.horizon; t++) {
+      const s_t = Math.pow(c.retentionRate, t);
+      clv += (m * s_t) / Math.pow(1 + cfg.discount, t);
+    }
+
+    // L_i = P_i * CLV_i
+    const li = c.churnProbability * clv;
+
+    c.feeMonthly = feeMonthly;
+    c.ptMonthly = ptMonthly;
+    c.variableCost = variableCost;
+    c.monthlyContribution = m;
+    c.clv = clv;
+    c.objectiveL = li;
+    c.level = li >= cfg.highThresh ? "high" : li >= cfg.midThresh ? "medium" : "low";
+    c.reason = buildReason(c);
+    c.action = buildAction(c);
+  });
+
+  updateTopStats();
+  render();
 }
-function calculateModel(data){
- const monthly=buildMonthlyContribution(data);
- customers.forEach(c=>{c.churnProbability=logisticProbability(c);calculateCLV(c,monthly)});
- const vals=customers.map(c=>c.clv);
- const min=Math.min(...vals),max=Math.max(...vals),range=max-min;
- customers.forEach(c=>{
-   c.clvNormalized=range>0?(c.clv-min)/range:0;
-   c.priority=modelConfig.wChurn*c.churnProbability+modelConfig.wCLV*c.clvNormalized;
-   c.risk=c.priority*100;
-   c.level=c.priority>=0.50?"high":c.priority>=0.30?"medium":"low";
-   c.reason=buildReason(c);
-   c.action=buildAction(c);
- });
+
+function buildReason(c) {
+  const a = [];
+  if (c.daysSinceCheckin >= 21) a.push("Lâu chưa quay lại tập");
+  if (c.recentCheckins < c.previousCheckins) a.push("Tần suất check-in giảm");
+  if (c.daysRemaining !== null && c.daysRemaining <= 30) a.push("Gói sắp/đã hết hạn");
+  if (c.avgRating !== null && c.avgRating <= 3) a.push("Đánh giá sao thấp");
+  if (c.unresolvedComplaints30d > 0) a.push("Còn khiếu nại chưa xử lý");
+  if (c.ptMonthly > 0) a.push("Hội viên có gói PT giá trị cao");
+  return a.length ? a.join("; ") : "Hoạt động ổn định";
 }
-function buildReason(c){
- const a=[];
- if(c.daysSinceCheckin>=21)a.push("Lâu chưa quay lại tập");
- if(c.recentCheckins<c.previousCheckins)a.push("Tần suất check-in giảm");
- if(c.daysRemaining!==null&&c.daysRemaining<=30)a.push("Gói sắp hết hạn hoặc đã hết hạn");
- if(c.avgRating!==null&&c.avgRating<=3)a.push("Mức độ hài lòng thấp");
- if(c.unresolvedComplaints30d>0)a.push("Còn khiếu nại chưa xử lý");
- return a.length?a.join("; "):"Hoạt động ổn định";
+
+function buildAction(c) {
+  if (c.level === "high") {
+    return [
+      "Ưu tiên can thiệp trực tiếp 1-1 để bảo toàn giá trị kỳ vọng Lᵢ.",
+      "Rà soát quyền lợi gói thẻ / lịch tập PT và xử lý ngay phản ánh (nếu có).",
+      "Đề xuất gói gia hạn cá nhân hóa và theo dõi check-in trong 14 ngày tới."
+    ];
+  }
+  if (c.level === "medium") {
+    return [
+      "Gửi nhắc lịch tập luyện và ưu đãi gia hạn sớm trước kỳ hết hạn.",
+      "Theo dõi biến động tần suất check-in hàng tuần."
+    ];
+  }
+  return [
+    "Duy trì chăm sóc tự động qua ứng dụng/tin nhắn định kỳ.",
+    "Tiếp tục theo dõi các chỉ số tương tác."
+  ];
 }
-function buildAction(c){
- if(c.level==="high")return ["Liên hệ trực tiếp để xác minh nhu cầu và nguyên nhân có thể rời bỏ.","Đề xuất phương án gia hạn hoặc điều chỉnh gói phù hợp.","Theo dõi kết quả chăm sóc và trạng thái gia hạn."];
- if(c.level==="medium")return ["Gửi thông tin nhắc lịch và quyền lợi hội viên.","Theo dõi tần suất tập và phản hồi trong kỳ tiếp theo."];
- return ["Duy trì chăm sóc định kỳ.","Cập nhật hoạt động và nhu cầu hội viên."];
+
+function updateTopStats() {
+  const n = customers.length || 1;
+  const highCount = customers.filter(c => c.level === "high").length;
+  const avgP = customers.reduce((s, c) => s + c.churnProbability, 0) / n;
+  const avgR = customers.reduce((s, c) => s + c.retentionRate, 0) / n;
+  const totalClv = customers.reduce((s, c) => s + c.clv, 0);
+  const totalL = customers.reduce((s, c) => s + c.objectiveL, 0);
+
+  // Tối ưu max sum L_i khi chọn Top K hội viên có L_i cao nhất
+  const sortedByL = [...customers].sort((a, b) => b.objectiveL - a.objectiveL);
+  const k = Math.min(cfg.topK, sortedByL.length);
+  const topKL = sortedByL.slice(0, k).reduce((s, c) => s + c.objectiveL, 0);
+  const share = totalL > 0 ? ((topKL / totalL) * 100).toFixed(1) + "%" : "0%";
+
+  document.getElementById("totalCount").textContent = customers.length.toLocaleString("vi-VN");
+  document.getElementById("highCount").textContent = highCount.toLocaleString("vi-VN");
+  document.getElementById("avgChurn").textContent = pct(avgP);
+  document.getElementById("avgRetention").textContent = pct(avgR);
+  document.getElementById("totalClv").textContent = compactMoney(totalClv);
+  document.getElementById("horizonStat").textContent = cfg.horizon;
+  document.getElementById("totalObjective").textContent = compactMoney(totalL);
+  document.getElementById("topKLabel").textContent = k;
+  document.getElementById("topKObjective").textContent = compactMoney(topKL);
+  document.getElementById("topKShare").textContent = share;
 }
-function render(){
- const q=document.getElementById("searchInput").value.trim().toLocaleLowerCase("vi");
- const level=document.getElementById("levelFilter").value;
- const branch=document.getElementById("branchFilter").value;
- const sort=document.getElementById("sortSelect").value;
- let list=customers.filter(c=>((c.name||"").toLocaleLowerCase("vi").includes(q)||(c.id||"").toLowerCase().includes(q))&&(level==="all"||c.level===level)&&(branch==="all"||c.branch===branch));
- list.sort((a,b)=>sort==="asc"?a.priority-b.priority:sort==="revenue"?b.historicalRevenue-a.historicalRevenue:b.priority-a.priority);
- document.getElementById("customerRows").innerHTML=list.map(c=>`
- <tr class="${c.level}" data-id="${esc(c.id)}">
-  <td><div class="customer"><div class="initial">${esc(initials(c.name))}</div><div><div class="customer-name">${esc(c.name)}</div><div class="customer-id">${esc(c.id)}</div></div></div></td>
-  <td>${esc(c.branch)}</td><td><span class="score ${c.level}">${pct(c.churnProbability)}</span></td>
-  <td>${money(c.clv)}</td><td><span class="score ${c.level}">${scoreText(c.priority)}</span></td>
-  <td>${esc(c.package||"—")}</td><td>${c.daysRemaining===null?"—":c.daysRemaining<0?`${Math.abs(c.daysRemaining)} ngày quá hạn`:`${c.daysRemaining} ngày`}</td>
-  <td><span class="pill ${c.level}">${levelNames[c.level]}</span></td><td><div class="reason" title="${esc(c.reason)}">${esc(c.reason)}</div></td></tr>`).join("");
- document.getElementById("emptyState").style.display=list.length?"none":"block";
- document.getElementById("resultCount").textContent=`${list.length.toLocaleString("vi-VN")} hội viên`;
- document.getElementById("customerRows").querySelectorAll("tr").forEach(row=>row.addEventListener("click",()=>openCustomer(row.dataset.id)));
+
+function render() {
+  const q = document.getElementById("searchInput").value.trim().toLocaleLowerCase("vi");
+  const level = document.getElementById("levelFilter").value;
+  const branch = document.getElementById("branchFilter").value;
+  const sort = document.getElementById("sortSelect").value;
+
+  let list = customers.filter(c =>
+    ((c.name || "").toLocaleLowerCase("vi").includes(q) || (c.id || "").toLowerCase().includes(q)) &&
+    (level === "all" || c.level === level) &&
+    (branch === "all" || c.branch === branch)
+  );
+
+  list.sort((a, b) => {
+    if (sort === "li_asc") return a.objectiveL - b.objectiveL;
+    if (sort === "clv_desc") return b.clv - a.clv;
+    if (sort === "churn_desc") return b.churnProbability - a.churnProbability;
+    if (sort === "m_desc") return b.monthlyContribution - a.monthlyContribution;
+    return b.objectiveL - a.objectiveL;
+  });
+
+  const filteredL = list.reduce((s, c) => s + c.objectiveL, 0);
+  document.getElementById("filteredObjSum").textContent = `Tổng Σ Lᵢ đang lọc: ${money(filteredL)}`;
+
+  document.getElementById("customerRows").innerHTML = list.map(c => `
+    <tr class="${c.level}" data-id="${esc(c.id)}">
+      <td>
+        <div class="customer">
+          <div class="initial">${esc(initials(c.name))}</div>
+          <div>
+            <div class="customer-name">${esc(c.name)}</div>
+            <div class="customer-id">${esc(c.id)}</div>
+          </div>
+        </div>
+      </td>
+      <td>${esc(c.branch)}</td>
+      <td><span class="score ${c.level}">${pct(c.churnProbability)}</span></td>
+      <td>${pct(c.retentionRate)}</td>
+      <td>${money(c.monthlyContribution)}</td>
+      <td>${money(c.clv)}</td>
+      <td><span class="score ${c.level}">${money(c.objectiveL)}</span></td>
+      <td>${esc(c.package || "—")} · ${c.daysRemaining === null ? "—" : c.daysRemaining < 0 ? `Quá hạn ${Math.abs(c.daysRemaining)}d` : `Còn ${c.daysRemaining}d`}</td>
+      <td><span class="pill ${c.level}">${levelNames[c.level]}</span></td>
+      <td><div class="reason" title="${esc(c.reason)}">${esc(c.reason)}</div></td>
+    </tr>
+  `).join("");
+
+  document.getElementById("emptyState").style.display = list.length ? "none" : "block";
+  document.getElementById("resultCount").textContent = `${list.length.toLocaleString("vi-VN")} hội viên`;
+  document.getElementById("customerRows").querySelectorAll("tr").forEach(row => {
+    row.addEventListener("click", () => openCustomer(row.dataset.id));
+  });
 }
-function openCustomer(id){
- const c=customers.find(x=>x.id===id);if(!c)return;
- document.getElementById("drawerContent").innerHTML=`
-  <div class="profile"><div class="initial">${esc(initials(c.name))}</div><div><h3>${esc(c.name)}</h3><p>${esc(c.id)} · ${esc(c.branch)}</p></div></div>
-  <div class="detail-score"><div class="detail-score-top"><div><small>Xác suất churn</small><strong class="score ${c.level}">${pct(c.churnProbability)}</strong></div><span class="pill ${c.level}">${levelNames[c.level]}</span></div></div>
-  <div class="detail-grid">
-   <div class="detail-box"><small>CLV dự báo</small><b>${money(c.clv)}</b></div><div class="detail-box"><small>Điểm ưu tiên Cᵢ</small><b>${scoreText(c.priority)}</b></div>
-   <div class="detail-box"><small>CLV chuẩn hóa F₂</small><b>${c.clvNormalized.toFixed(3)}</b></div><div class="detail-box"><small>Lợi nhuận đóng góp/tháng</small><b>${money(c.monthlyContribution)}</b></div>
-   <div class="detail-box"><small>Trạng thái gói</small><b>${esc(c.packageStatus)}</b></div><div class="detail-box"><small>Ngày hết hạn</small><b>${dateVN(c.packageEnd)}</b></div>
-   <div class="detail-box"><small>Check-in 14 ngày gần nhất</small><b>${c.recentCheckins}</b></div><div class="detail-box"><small>Check-in 14 ngày trước đó</small><b>${c.previousCheckins}</b></div>
-   <div class="detail-box"><small>Đánh giá trung bình</small><b>${c.avgRating===null?"Chưa có":c.avgRating+"/5 sao"}</b></div><div class="detail-box"><small>Khiếu nại chưa xử lý</small><b>${c.unresolvedComplaints30d}</b></div>
-   <div class="detail-box"><small>Lần check-in gần nhất</small><b>${dateVN(c.lastCheckin)}</b></div><div class="detail-box"><small>Doanh thu gói đã mua</small><b>${money(c.historicalRevenue)}</b></div>
-  </div>
-  <div class="section-title">Điểm ưu tiên giữ chân</div><div class="reason-card">Cᵢ = 0,4 × Pᵢ + 0,6 × F₂,ᵢ = ${(0.4*c.churnProbability+0.6*c.clvNormalized).toFixed(3)}</div>
-  <div class="section-title">Tín hiệu hội viên</div><div class="reason-card">${esc(c.reason)}</div>
-  <div class="section-title">Hành động đề xuất</div><div class="action-card"><b>${levelNames[c.level]}</b><ul>${c.action.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`;
- document.getElementById("overlay").classList.add("open");
+
+function openCustomer(id) {
+  const c = customers.find(x => x.id === id);
+  if (!c) return;
+  const f = c.features;
+  document.getElementById("drawerContent").innerHTML = `
+    <div class="profile">
+      <div class="initial">${esc(initials(c.name))}</div>
+      <div><h3>${esc(c.name)}</h3><p>${esc(c.id)} · ${esc(c.branch)}</p></div>
+    </div>
+
+    <div class="detail-score">
+      <div class="detail-score-top">
+        <div>
+          <small>Hàm mục tiêu cá nhân Lᵢ = Pᵢ × CLVᵢ</small>
+          <strong class="score ${c.level}">${money(c.objectiveL)}</strong>
+        </div>
+        <span class="pill ${c.level}">${levelNames[c.level]}</span>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-box"><small>Xác suất churn Pᵢ</small><b>${pct(c.churnProbability)} (Zᵢ = ${c.zScore.toFixed(3)})</b></div>
+      <div class="detail-box"><small>Tỷ lệ giữ chân rᵢ = 1 − Pᵢ</small><b>${pct(c.retentionRate)} / tháng</b></div>
+      <div class="detail-box"><small>Doanh thu gói thẻ Feeᵢ</small><b>${money(c.feeMonthly)} / tháng</b></div>
+      <div class="detail-box"><small>Doanh thu gói PT (PTᵢ)</small><b>${money(c.ptMonthly)} / tháng</b></div>
+      <div class="detail-box"><small>Chi phí biến đổi VariableCostᵢ</small><b>${money(c.variableCost)} / tháng</b></div>
+      <div class="detail-box"><small>Lợi nhuận đóng góp mᵢ</small><b>${money(c.monthlyContribution)} / tháng</b></div>
+      <div class="detail-box"><small>CLVᵢ (T = ${cfg.horizon} tháng, d = ${(cfg.discount*100).toFixed(1)}%)</small><b>${money(c.clv)}</b></div>
+      <div class="detail-box"><small>Trạng thái gói & Hạn</small><b>${esc(c.packageStatus)} (${dateVN(c.packageEnd)})</b></div>
+    </div>
+
+    <div class="section-title">Diễn giải từng bước theo công thức</div>
+    <div class="math-card">
+      <div><b>1. Logistic Regression:</b></div>
+      <div>x = [${f.x1.toFixed(2)}, ${f.x2.toFixed(2)}, ${f.x3.toFixed(2)}, ${f.x4.toFixed(2)}, ${f.x5.toFixed(2)}, ${f.x6.toFixed(2)}, ${f.x7}]</div>
+      <div>Zᵢ = ${c.zScore.toFixed(4)} ⇒ Pᵢ = 1 / (1 + e⁻ᶻⁱ) = ${pct(c.churnProbability)}</div>
+      <div style="margin-top:6px"><b>2. CLV với Sᵢ(t) = rᵢᵗ:</b></div>
+      <div>mᵢ = (${Math.round(c.feeMonthly).toLocaleString("vi-VN")} + ${Math.round(c.ptMonthly).toLocaleString("vi-VN")}) × ${cfg.margin} − ${Math.round(c.variableCost).toLocaleString("vi-VN")} = ${money(c.monthlyContribution)}</div>
+      <div>Sᵢ(1) = ${c.retentionRate.toFixed(3)}, Sᵢ(${cfg.horizon}) = ${Math.pow(c.retentionRate, cfg.horizon).toFixed(4)} ⇒ CLVᵢ = ${money(c.clv)}</div>
+      <div style="margin-top:6px"><b>3. Mục tiêu tổng hợp:</b></div>
+      <div>Lᵢ = ${(c.churnProbability).toFixed(4)} × ${Math.round(c.clv).toLocaleString("vi-VN")} = <b>${money(c.objectiveL)}</b></div>
+    </div>
+
+    <div class="section-title">Tín hiệu hành vi & lịch sử</div>
+    <div class="reason-card">${esc(c.reason)} · Check-in 14d: ${c.recentCheckins} (kỳ trước: ${c.previousCheckins}) · Đánh giá: ${c.avgRating ?? "Chưa có"} sao</div>
+
+    <div class="section-title">Hành động đề xuất</div>
+    <div class="action-card">
+      <b>${levelNames[c.level]}</b>
+      <ul>${c.action.map(a => `<li>${esc(a)}</li>`).join("")}</ul>
+    </div>
+  `;
+  document.getElementById("overlay").classList.add("open");
 }
-async function init(){
- try{
-  const res=await fetch("gymsys_data.json");if(!res.ok)throw new Error("Không tải được dữ liệu");
-  const data=await res.json();customers=data.customers||[];snapshotDate=data.snapshotDate||"";
-  calculateModel(data);
-  const branchSelect=document.getElementById("branchFilter");(data.branches||[]).forEach(b=>{const o=document.createElement("option");o.value=b;o.textContent=b;branchSelect.appendChild(o)});
-  document.getElementById("totalCount").textContent=customers.length.toLocaleString("vi-VN");
-  document.getElementById("highCount").textContent=customers.filter(c=>c.level==="high").length.toLocaleString("vi-VN");
-  document.getElementById("avgChurn").textContent=pct(customers.reduce((s,c)=>s+c.churnProbability,0)/Math.max(1,customers.length));
-  document.getElementById("totalClv").textContent=(customers.reduce((s,c)=>s+c.clv,0)/1e9).toFixed(2)+" tỷ";
-  document.getElementById("snapshotLabel").textContent="● Snapshot "+dateVN(snapshotDate);render();
- }catch(err){document.getElementById("snapshotLabel").textContent="● Lỗi tải dữ liệu";document.getElementById("customerRows").innerHTML=`<tr><td colspan="9" class="empty">Không tải được dữ liệu. Hãy đặt gymsys_data.json cùng thư mục với file HTML và mở website qua Live Server hoặc GitHub Pages.<br>${esc(err.message)}</td></tr>`;}
+
+function syncConfigInputs() {
+  document.getElementById("cfg_b0").value = cfg.b0;
+  document.getElementById("cfg_b1").value = cfg.b1;
+  document.getElementById("cfg_b2").value = cfg.b2;
+  document.getElementById("cfg_b3").value = cfg.b3;
+  document.getElementById("cfg_b4").value = cfg.b4;
+  document.getElementById("cfg_b5").value = cfg.b5;
+  document.getElementById("cfg_b6").value = cfg.b6;
+  document.getElementById("cfg_b7").value = cfg.b7;
+  document.getElementById("cfg_margin").value = cfg.margin;
+  document.getElementById("cfg_vcBase").value = cfg.vcBase;
+  document.getElementById("cfg_vcCheckin").value = cfg.vcCheckin;
+  document.getElementById("cfg_discount").value = cfg.discount;
+  document.getElementById("cfg_horizon").value = cfg.horizon;
+  document.getElementById("cfg_topK").value = cfg.topK;
+  document.getElementById("cfg_highThresh").value = cfg.highThresh;
+  document.getElementById("cfg_midThresh").value = cfg.midThresh;
 }
-document.getElementById("searchInput").addEventListener("input",render);
-document.getElementById("levelFilter").addEventListener("change",render);
-document.getElementById("branchFilter").addEventListener("change",render);
-document.getElementById("sortSelect").addEventListener("change",render);
-document.getElementById("closeDrawer").addEventListener("click",()=>document.getElementById("overlay").classList.remove("open"));
-document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")e.currentTarget.classList.remove("open")});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")document.getElementById("overlay").classList.remove("open")});
+
+function readConfigInputs() {
+  cfg.b0 = Number(document.getElementById("cfg_b0").value);
+  cfg.b1 = Number(document.getElementById("cfg_b1").value);
+  cfg.b2 = Number(document.getElementById("cfg_b2").value);
+  cfg.b3 = Number(document.getElementById("cfg_b3").value);
+  cfg.b4 = Number(document.getElementById("cfg_b4").value);
+  cfg.b5 = Number(document.getElementById("cfg_b5").value);
+  cfg.b6 = Number(document.getElementById("cfg_b6").value);
+  cfg.b7 = Number(document.getElementById("cfg_b7").value);
+  cfg.margin = clamp(Number(document.getElementById("cfg_margin").value) || 0.65, 0.01, 1);
+  cfg.vcBase = Math.max(0, Number(document.getElementById("cfg_vcBase").value) || 0);
+  cfg.vcCheckin = Math.max(0, Number(document.getElementById("cfg_vcCheckin").value) || 0);
+  cfg.discount = clamp(Number(document.getElementById("cfg_discount").value) || 0, 0, 0.5);
+  cfg.horizon = Math.max(1, Math.round(Number(document.getElementById("cfg_horizon").value) || 12));
+  cfg.topK = Math.max(1, Math.round(Number(document.getElementById("cfg_topK").value) || 100));
+  cfg.highThresh = Math.max(0, Number(document.getElementById("cfg_highThresh").value) || 0);
+  cfg.midThresh = Math.max(0, Number(document.getElementById("cfg_midThresh").value) || 0);
+}
+
+async function init() {
+  syncConfigInputs();
+  try {
+    const res = await fetch("gymsys_data.json");
+    if (!res.ok) throw new Error("Không tải được dữ liệu gymsys_data.json");
+    rawData = await res.json();
+    customers = rawData.customers || [];
+    snapshotDate = rawData.snapshotDate || "";
+
+    const branchSelect = document.getElementById("branchFilter");
+    (rawData.branches || []).forEach(b => {
+      const o = document.createElement("option");
+      o.value = b;
+      o.textContent = b;
+      branchSelect.appendChild(o);
+    });
+
+    calculateAllModels(rawData);
+    document.getElementById("snapshotLabel").textContent = "● Snapshot " + dateVN(snapshotDate);
+  } catch (err) {
+    document.getElementById("snapshotLabel").textContent = "● Lỗi tải dữ liệu";
+    document.getElementById("customerRows").innerHTML = `<tr><td colspan="10" class="empty">Không tải được dữ liệu. Hãy đặt gymsys_data.json cùng thư mục với file HTML và mở website qua Live Server hoặc GitHub Pages.<br>${esc(err.message)}</td></tr>`;
+  }
+}
+
+document.getElementById("toggleConfigBtn").addEventListener("click", () => {
+  document.getElementById("configPanel").classList.toggle("open");
+});
+document.getElementById("applyConfigBtn").addEventListener("click", () => {
+  readConfigInputs();
+  if (rawData) calculateAllModels(rawData);
+});
+document.getElementById("resetConfigBtn").addEventListener("click", () => {
+  cfg = { ...DEFAULT_CONFIG };
+  syncConfigInputs();
+  if (rawData) calculateAllModels(rawData);
+});
+document.getElementById("searchInput").addEventListener("input", render);
+document.getElementById("levelFilter").addEventListener("change", render);
+document.getElementById("branchFilter").addEventListener("change", render);
+document.getElementById("sortSelect").addEventListener("change", render);
+document.getElementById("closeDrawer").addEventListener("click", () => document.getElementById("overlay").classList.remove("open"));
+document.getElementById("overlay").addEventListener("click", e => { if (e.target.id === "overlay") e.currentTarget.classList.remove("open"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") document.getElementById("overlay").classList.remove("open"); });
+
 init();
-</script></body>
+</script>
+</body>
 </html>
